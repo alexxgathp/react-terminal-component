@@ -10,11 +10,11 @@ class CommandInput extends Component {
   }
 
   scrollIntoView() {
-    this.input.scrollIntoView();
+    this.input.scrollIntoView(false);
   }
 
   render() {
-    const {autoFocus, promptSymbol, value, onChange, onSubmit, onKeyDown} = this.props;
+    const { autoFocus, promptSymbol, value, onChange, onSubmit, onKeyDown } = this.props;
 
     return (
       <div className={'terminalInput'}>
@@ -23,7 +23,6 @@ class CommandInput extends Component {
           onSubmit={e => {
             e.preventDefault();
             onSubmit(this.input.value);
-            this.input.value = '';
           }}
         >
           <PromptSymbol>{promptSymbol}</PromptSymbol>
@@ -34,7 +33,7 @@ class CommandInput extends Component {
               onChange(e);
             }}
             value={value}
-            innerRef={inputRef => (this.input = inputRef)}
+            ref={ref => (this.input = ref)}
           />
         </StyledForm>
       </div>
